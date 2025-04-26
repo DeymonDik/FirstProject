@@ -1,0 +1,49 @@
+<div class="main">
+  <h1>Мой список дел</h1>
+  <label for="addItemInput">Что нужно сделать сегодня?</label>
+
+<input
+  #newItem
+  placeholder="Введите сюда"
+  (keyup.enter)="addItem(newItem.value); newItem.value = ''"
+  class="lg-text-input"
+  id="addItemInput"
+/>
+
+<button class="btn-primary" (click)="addItem(newItem.value); newItem.value = ''">Добавить</button>
+
+<div class="btn-wrapper">
+  <button
+    class="btn btn-menu"
+    [class.active]="filter == 'all'"
+    (click)="filter = 'all'">
+    Все
+  </button>
+
+  <button
+    class="btn btn-menu"
+    [class.active]="filter == 'active'"
+    (click)="filter = 'active'">
+    Сделать
+  </button>
+
+  <button
+    class="btn btn-menu"
+    [class.active]="filter == 'done'"
+    (click)="filter = 'done'">
+    Готовые
+  </button>
+</div>
+
+<h2>
+  {{items.length}}
+  <span *ngIf="items.length === 1; else elseBlock">дело</span>
+  <ng-template #elseBlock>дел</ng-template>
+</h2>
+
+<ul>
+  <li *ngFor="let item of items">
+    <app-item (remove)="remove(item)" [item]="item"></app-item>
+  </li>
+</ul>
+</div>
