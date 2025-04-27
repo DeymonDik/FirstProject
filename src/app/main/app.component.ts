@@ -4,7 +4,6 @@ import { RouterOutlet } from '@angular/router';
 import { ItemComponent } from '../item/item.component';
 import { Item } from '../models/item';
 import { CrudClientService } from '../services/crud-client.service';
-import { assert } from 'console';
 
 @Component({
   selector: 'app-root',
